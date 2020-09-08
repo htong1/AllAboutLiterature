@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{
+  background-color: FireBrick;
+}
+
+h1 {
+  color: white;
+  font-family: cursive;
+  text-align: center;
+}
+
+.disBtn {
+  background-color: FireBrick;
+  color: white;
+  font-family: cursive;
+}
+
+h3{
+color: white;
+font-family: cursive;
+ text-align: center;
+}
+
+table {
+border-width: 2px;
+}
+
+th {
+background-color: Cornsilk;
+font-size: 14px;
+text-align: center;
+border-style: solid;
+border-color: Black;
+font-family: cursive;
+}
+
+td {
+background-color: White;
+width: 30px;
+font-size: 14px;
+text-align: center;
+margin-top: 12px;
+border-style: solid;
+border-color: Black;
+font-family: cursive;
+}
+</style>
+<script src = "textAnalyzer.js"> </script>
+</head>
+<body>
+<h1>Text Analyzer! :D</h1>
+<h3> Input text and we'll analyze it. </h3>
+<textarea id="words" rows="8" cols="95"></textarea>
+<br>
+<br>
+<button type = "button" id = "analyze" class = "disBtn" onclick = "analyze(words.value)"> Word Frequency </button>
+
+<button type = "button" id = "letterAnalysis" class = "disBtn" onclick = "letterAnalysis(words.value)"> Letter Frequency </button>
+<button type = "button" id = "isPalindrome" class = "disBtn" onclick = "isPalindrome(words.value)"> Is Palindrome? </button>
+<br>
+<br>
+<input type="text" id="word1">
+<input type="text" id="word2">
+<br>
+<br>
+<button type = "button" id = "isAnagram" class = "disBtn" onclick = "isAnagram()"> Is Anagram? </button>
+<br>
+<br>
+<input type="text" id="wordo">
+<input type="text" id="wordt">
+<span id="disTab"> </span>
+<br>
+<br>
+<span id="disLetter"> </span>
+<br>
+<br>
+<span id="result"> </span>
+<br>
+<br>
+<span id="result2"> </span>
+</body>
+</html>

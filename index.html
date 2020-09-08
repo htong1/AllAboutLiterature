@@ -5,10 +5,122 @@
     <meta name="viewport" content="width=device-width">
     <title>repl.it</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
+    <script>
+        fetch("https://type.fit/api/quotes")
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(data) {
+    document.getElementById("motivate").innerHTML = `Motivational Quote of the moment:  ${data[Math.floor(Math.random() * data.length)].text} By: ${data[Math.floor(Math.random() * data.length)].author}`;
+  }); 
+
+  let key = "c01b916d7dc78d6669e338ee409b9dc5";
+  function weatherBalloon(cityID) {
+    debugger;
+	fetch('https://api.openweathermap.org/data/2.5/weather?id=' + cityID + '&appid=' + key)  
+	.then(function(resp) { return resp.json() }) // Convert data to json
+	.then(function(data) {
+		drawWeather(data); // Call drawWeather
+	})
+	.catch(function() {
+		// catch any errors
+	});
+}
+
+weatherBalloon(5368361);
+
+function drawWeather( d ) {
+	var celcius = Math.round(parseFloat(d.main.temp)-273.15);
+	var fahrenheit = Math.round(((parseFloat(d.main.temp)-273.15)*1.8)+32); 
+	
+	document.getElementById('description').innerHTML = "Description: " + d.weather[0].description;
+	document.getElementById('temp').innerHTML =  "Temperature: " + fahrenheit + '&deg;';
+	document.getElementById('location').innerHTML = "City: " + d.name;
+  document.getElementById('feelslike').innerHTML = "Feels Like: " + d.main.feels_like;
+  document.getElementById('min').innerHTML = "Lows: " + d.main.temp_min; 
+  document.getElementById('max').innerHTML = "Highs: " + d.main.temp_max;
+  document.getElementById('pressure').innerHTML = "Pressure: " + d.main.pressure;
+  document.getElementById('humidity').innerHTML = "Humidity: " + d.main.humidity;
+  document.getElementById('visibility').innerHTML = "Visibility: " + d.visibility;
+  document.getElementById('sunrise').innerHTML = "Sunrise: " + new Date(d.sys.sunrise).toString().split("1970")[1];
+  document.getElementById('sunset').innerHTML = "Sunset: " + new Date(d.sys.sunset).toString().split("1970")[1];
+}
+</script>
+    <style>
+		body {
+			background-color: lightblue;
+       border-style: groove;
+           border-width: 10px;
+           border-color: white;
+		}
+
+		h1 {
+			color: white;
+      font-family: cursive;
+      text-align: center;
+		}
+
+		p {
+			color: white;
+      font-family: cursive;
+      background-color: CornFlowerBlue;
+      text-align: center;
+		}
+  
+  #motivate{
+    color: white;
+    font-family: cursive;
+    background-color: CornFlowerBlue;
+    border-style: double;
+    border-width: 10px;
+    font-style: italic;
+  }
+
+  a{
+    font-family: cursive;
+  }
+
+  .weather{
+    	color: white;
+      font-family: cursive;
+      text-align: center;
+      background-color: lightblue;
+  }
+
+  h4{
+    		color: white;
+      font-family: cursive;
+      text-align: center;
+  }
+  	</style>
   </head>
   <body>
     <h1> Literature Archives </h1>
-    <h4> Welcome to the Literature Archives! here you will be your source for all things involving words! Dictionary definitions, 
+    <h4> Welcome to the Literature Archives! Here will be your source for all things involving words! Everything about every word is right at your fingertips and it's up to you to discover the possibilies of words.<h4>
+
+    <div id = "motivate"> </div>
+    <div id="weather">
+    <div class = "weather" id="description"></div>
+    <div class = "weather" id="temp"></div>
+    <div class = "weather" id="location"></div>
+    <div class = "weather" id="feelslike"></div>
+    <div class = "weather" id="min"></div>
+    <div class = "weather" id="max"></div>
+    <div class = "weather" id="pressure"></div>
+    <div class = "weather" id="humidity"></div>
+    <div class = "weather" id="visibility"></div>
+    <div class = "weather" id="sunrise"></div>
+    <div class = "weather" id="sunset"></div>
+    <br>
+    <br>
+    <p> Start by typing a word and learn the definition and related results to your word.</p>
+    <input type = "text" id = "word">
+    <br>
+    <br>
+    <p> If you're interested, check out the text analyzer, which analyzes letter and word frequency of an inputted text. </p>
+    <a href="textAnalyzer.html"> Text Analyzer!</a>
+    <a href="dictionary/dictionary.html"> Text Analyzer!</a>
+</div>
     <script src="script.js"></script>
   </body>
 </html>

@@ -31,8 +31,15 @@ function displayDef(defs, out, word) {
 }
 
 function createRowDef(k) {
-    let row = `<tr>
+    let row = ``;
+    if(typeof k.example == "object"){
+      row = `<tr>
+    <td>${k.term}</td> <td>${k.partofspeech}</td> <td>${k.definition} </td> <td> There is no example. :( </td>
+    </tr>`
+    } else {
+       row = `<tr>
     <td>${k.term}</td> <td>${k.partofspeech}</td> <td>${k.definition} </td> <td>${k.example}</td>
     </tr>`
+    }
     return row;
 }

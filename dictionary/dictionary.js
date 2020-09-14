@@ -1,5 +1,4 @@
  function define(){
-debugger;
 let word = document.getElementById("word").value;
 let out = document.getElementById("output");
 fetchDef(word, out);
@@ -17,29 +16,30 @@ displayDef(res.result, out, word);
 }
 
 function displayDef(defs, out, word) {
-    let tblHtml = `<p>Here are the definitions, part of speech, and examples of the word: ${word}</p>
-    <table> 
-    <th> Term </th>
-    <th> Part of Speech </th>
-    <th> Definition </th>
-    <th> Example </th>`;
+    let tblHtml = `<p>Here are the definitions, part of speech, and examples of the word: <strong>${word}</strong></p>
+    <ol>`;
     for (const k of defs) {
         tblHtml += createRowDef(k);
     }
-    tblHtml += `</table>`;
+    tblHtml += `</ol>`;
     out.innerHTML = tblHtml;
 }
 
 function createRowDef(k) {
-    let row = ``;
+    debugger;
+    let example = "";
+    let pos = "";
     if(typeof k.example == "object"){
-      row = `<tr>
-    <td>${k.term}</td> <td>${k.partofspeech}</td> <td>${k.definition} </td> <td> There is no example. :( </td>
-    </tr>`
+      example = "N/A";
     } else {
-       row = `<tr>
-    <td>${k.term}</td> <td>${k.partofspeech}</td> <td>${k.definition} </td> <td>${k.example}</td>
-    </tr>`
+      example = k.example;
     }
-    return row;
+
+    if(typeof k.partofspeech == "object"){
+      pos = "N/A";
+    } else {
+      pos = k.partofspeech;
+    }
+    
+    return `<li> <b>${k.term}</b>: <em>(${pos})</em> -<u>${k.definition}</u> <br> Examples: <i>${example}</i></li><br>`
 }

@@ -1,5 +1,4 @@
 function getWord(){
-debugger;
 let wordS = document.getElementById("wordSyno").value;
 let outS = document.getElementById("outputSyno");
 let outA = document.getElementById("outputAnt");
@@ -19,41 +18,54 @@ displayAnt(res.result, outA, wordS)
 }
 
 function displaySyno(synos, outS, wordS) {
-    let tbl = `<p>Here are the synonyms for: ${wordS}</p>
+  debugger;
+    let tbl = `<p style = "color:white;">Here are the synonyms for: ${wordS}</p>
     <ol>`;
+    let m = new Set();
     for (const k of synos) {
-        tbl += createRowSyno(k);
+        m.add(k.synonyms);
     }
+
+    for(const q of m){
+     tbl += createRowSyno(q);
+    }
+
     tbl += `</ol>`;
     outS.innerHTML = tbl;
 }
 
-function createRowAnt(k) {
+function createRowAnt(q) {
    let rowAnt = ``;
-    if(typeof k.antonyms == "object"){
+    if(typeof q == "object"){
       rowAnt = `<li>There are no antonyms.</li>`
     } else {
-      rowAnt = `<li>${k.antonyms}</li>`
+      rowAnt = `<li>${q}</li>`
     }
     return rowAnt;
 }
 
 function displayAnt(ants, outA, wordS) {
-    let atbl = `<p>Here are the antonyms for: ${wordS}</p>
+    let atbl = `<p style = "color:red;">Here are the antonyms for: ${wordS}</p>
     <ol>`;
+    let m = new Set();
     for (const k of ants) {
-        atbl += createRowAnt(k);
+        m.add(k.antonyms);
     }
+
+    for(const q of m){
+     atbl += createRowAnt(q);
+    }
+
     atbl += `</ol>`;
     outA.innerHTML = atbl;
 }
 
-function createRowSyno(k) {
+function createRowSyno(q) {
     let rowSyno = ``;
-    if(typeof k.synonyms == "object"){
+    if(typeof q == "object"){
       rowSyno = `<li>There are no synonyms.</li>`
     } else {
-      rowSyno = `<li>${k.synonyms}</li>`
+      rowSyno = `<li>${q}</li>`
     }
     return rowSyno;
 }

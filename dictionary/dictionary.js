@@ -1,4 +1,4 @@
- function define(){
+function define(){
 let word = document.getElementById("word").value;
 let out = document.getElementById("output");
 fetchDef(word, out);
